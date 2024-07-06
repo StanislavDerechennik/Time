@@ -58,6 +58,19 @@ public class Time {
         changeHours((seconds + change) / 3600);
         changeMinutes(((seconds + change) % 3600) / 60);
         seconds = (seconds + change) % 60;
+        if (seconds < 0) {
+            if (minutes > 0) {
+                minutes--;
+            } else {
+                if (hours > 0) {
+                    hours--;
+                } else {
+                    hours = 23;
+                }
+                minutes = 59;
+            }
+            seconds = 60 - Math.abs(seconds);
+        }
     }
 
     public void display() {
